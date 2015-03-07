@@ -1,6 +1,7 @@
 var http = require("http"),
 	url = require("url"),
 	path = require("path"),
+	dataParser = require("./dataParser"),
 	resourceProcessor = require("./staticResourceProcessor"),
 	calculatorProcessor = require("./calculatorProcessor");
 
@@ -11,8 +12,8 @@ String.prototype.toNumber = function(){
 var server = http.createServer(function(req, res){
 	
 	//set index.html as default
-	req.url = url.parse(req.url, true);
 	req.url.pathname = req.url.pathname === "/" ? "/index.html" : req.url.pathname;
+	dataParser.parse(req,res);
 	if (resourceProcessor.isStatic(req.url.pathname)){
 		resourceProcessor.serve(req,res);
 	} else if (req.url.pathname === "/calculator"){
