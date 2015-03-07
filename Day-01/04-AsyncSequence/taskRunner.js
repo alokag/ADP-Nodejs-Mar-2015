@@ -1,22 +1,38 @@
-function f1(){
+function f1(next){
 	setTimeout(function(){
 		console.log("f1 is invoked");
+		if (next) next();
 	},5000)
 }
-function f2(){
+function f2(next){
 	setTimeout(function(){
 		console.log("f2 is invoked");
+		if (next) next();
 	},5000)
 }
-function f3(){
+function f3(next){
 	setTimeout(function(){
 		console.log("f3 is invoked");
+		if (next) next();
 	},5000)
 }
-function f4(){
+function f4(next){
 	setTimeout(function(){
 		console.log("f4 is invoked");
+		if (next) next();
 	},5000)
 }
 
 var tasks = [f1, f2, f3, f4]
+
+function run(tasks){
+	if (tasks.length === 0) return;
+	var first = tasks[0];
+	var next = (function(tasks){
+		return function(){
+			run(tasks);
+		}
+	})(tasks.slice(1));
+	first(next);
+}
+
