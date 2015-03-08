@@ -23,7 +23,7 @@ function f4(next){
 	},5000)
 }
 
-var tasks = [f1, f2, f3, f4]
+var tasks = [f4, f3, f2, f1]
 
 function run(tasks){
 	if (tasks.length === 0) return;
