@@ -18,9 +18,6 @@ function addTask(task){
 
 module.exports = {
 	addTask : addTask,
-	get : function(url, task){
-
-	}
 	run : function(){
 		return function(req, res){
 			runTasks(req, res, tasks);
