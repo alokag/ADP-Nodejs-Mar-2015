@@ -8,6 +8,7 @@ var bugs = [
 		{"id":"1424758602537","title":"Application unable to interact with the server","createdAt":"2015-02-24T06:16:42.527Z","isClosed":false}
 	];
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render("bugs/index", {list : bugs, msg : ''});
