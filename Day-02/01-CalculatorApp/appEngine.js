@@ -4,8 +4,8 @@ function runTasks(req, res, tasks){
 	if (tasks.length === 0) return;
 	var first = tasks[0];
 	var next = (function(req, res, tasks){
-		return function(data){
-			runTasks(req, res, tasks, data);
+		return function(){
+			runTasks(req, res, tasks);
 		}
 	})(req,res, tasks.slice(1));
 	first(req, res, next);
