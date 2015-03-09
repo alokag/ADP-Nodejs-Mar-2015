@@ -1,0 +1,12 @@
+var nodeJsWebSocket =  require("nodejs-websocket");
+var server = nodeJsWebSocket.createServer(function(con){
+	con.on("text", function(msg){
+		server.connections.forEach(function(connection){
+			if (con !== connection){
+				connection.sendText(msg);
+			}
+		});
+	});
+});
+server.listen(9999);
+console.log("SOcket server listening on port 9999");
